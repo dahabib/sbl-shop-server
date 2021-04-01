@@ -27,6 +27,10 @@ client.connect(err => {
             res.send('successfully added');
     })})
 
+    app.get("/", (req, res) => {
+        res.send('connected from server');
+    })
+
 });
 
 app.listen(port);

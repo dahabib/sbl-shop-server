@@ -27,6 +27,17 @@ client.connect(err => {
             res.send('successfully added');
     })})
 
+
+    app.get("/product", (req, res) => {
+        productCollection.find({})
+        .toArray( (err, product) => {
+            res.send(product);
+        })
+        .then(result => {
+            console.log('data added successfully');
+            res.send('successfully added');
+    })})
+
     app.get("/", (req, res) => {
         res.send('connected from server');
     })

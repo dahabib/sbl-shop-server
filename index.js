@@ -16,6 +16,7 @@ app.use(cors());
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const productCollection = client.db("sbl-shop").collection("products");
+    const ordersCollection = client.db("sbl-shop").collection("orders");
     // perform actions on the collection object
 
     app.post("/addProduct", (req, res) => {
@@ -35,12 +36,28 @@ client.connect(err => {
         })
     })
 
-    app.get('/product/:id', (req, res) => {
-        productCollection.find({id: req.params.id})
+    app.get('/product', (req, res) => {
+        productCollection.find({ _id: req.query._id})
         .toArray( (err, product) => {
             res.send(product);
         })
     })
+
+    app.post('/addOrder', (req, res) => {
+        const order = req.body;
+        ordesCollection.insertOne(order)
+        .then(result => {
+            res.send(result.insertedCount > 0);
+        })
+    })
+
+    app.get('/orders', (req, res) => {
+        ordersCollection.find({ email: req.query.email })
+        .toArray( (err, orders) => {
+            res.send(orders);
+        })
+    })
+
 
     app.get("/", (req, res) => {
         res.send('connected from server');

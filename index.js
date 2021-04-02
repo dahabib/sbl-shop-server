@@ -40,7 +40,7 @@ client.connect(err => {
     app.get('/product/:id', (req, res) => {
         productCollection.find({ _id: ObjectID(req.params.id) })
         .toArray( (err, product) => {
-            res.send(product);
+            res.send(product[0]);
         })
     })
 

@@ -35,6 +35,13 @@ client.connect(err => {
         })
     })
 
+    app.get('/products/:id', (req, res) => {
+        productCollection.find({id: req.params.id})
+        .toArray( (err, product) => {
+            res.send(product);
+        })
+    })
+
     app.get("/", (req, res) => {
         res.send('connected from server');
     })

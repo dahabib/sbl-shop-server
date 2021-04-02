@@ -33,10 +33,7 @@ client.connect(err => {
         .toArray( (err, product) => {
             res.send(product);
         })
-        .then(result => {
-            console.log('data added successfully');
-            res.send('successfully added');
-    })})
+     )})
 
     app.get("/", (req, res) => {
         res.send('connected from server');

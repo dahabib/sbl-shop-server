@@ -33,7 +33,7 @@ client.connect(err => {
         .toArray( (err, product) => {
             res.send(product);
         })
-     )})
+    })
 
     app.get("/", (req, res) => {
         res.send('connected from server');

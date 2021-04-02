@@ -28,17 +28,17 @@ client.connect(err => {
     })})
 
 
-    app.get("/product", (req, res) => {
+    app.get("/products", (req, res) => {
         productCollection.find({})
         .toArray( (err, product) => {
             res.send(product);
         })
     })
 
-    app.get('/products/:id', (req, res) => {
+    app.get('/product/:id', (req, res) => {
         productCollection.find({id: req.params.id})
         .toArray( (err, product) => {
-            res.send(product);
+            res.send(product[0]);
         })
     })
 
